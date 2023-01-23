@@ -1,15 +1,12 @@
 import "./App.css";
-import React, { Component } from "react";
-import Portfolio from "./components/Portfolio/Portfolio";
+import Store from "./Components/Store/Store";
 
-export class App extends Component {
-  render() {
-    return (
-      <div className="container">
-        <Portfolio />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="container">
+      <Store />
+    </div>
+  );
 }
 
 export default App;
