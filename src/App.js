@@ -1,10 +1,16 @@
 import "./App.css";
-import { data } from './data';
-import Listing from "./Components/Listing/Listing";
+import MessageHistory from "./Components/MessageHistory/MessageHistory";
+import { messages } from "./data";
 
 function App() {
   return (
-    <Listing items={data} />
+    <div className="clearfix container">
+      <div className="chat">
+        <div className="chat-history">
+          <MessageHistory list={messages} />
+        </div>
+      </div>
+    </div>
   );
 }
 
