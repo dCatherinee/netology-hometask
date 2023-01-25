@@ -1,102 +1,38 @@
-.container {
-  margin: 0 auto;
-  padding: 0 40px;
+.App {
+  text-align: center;
 }
 
-.store {
-  margin-top: 40px;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-.icon-switch {
-  display: flex;
-  justify-content: flex-end;
-  color: gray;
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
-.card-view {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-  margin-top: 40px;
-}
-
-.product-card {
-  width: 400px;
-  height: 400px;
-  background-color: #f6f6f6;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.product-card__img {
-  width: 250px;
-  height: auto;
+.App-link {
+  color: #61dafb;
 }
 
-.product-card__wrapper {
-  display: inline-flex;
-  justify-content: space-between;
-  width: 80%;
-}
-
-.product__title {
-  font-size: 18px;
-  font-weight: 400;
-  color: black;
-  margin-top: 25px;
-  text-transform: uppercase;
-}
-
-.product__text {
-  font-size: 16px;
-  font-weight: 400;
-  color: black;
-  margin: 0;
-}
-
-.product__price {
-  font-size: 16px;
-  font-weight: 400;
-  color: red;
-}
-
-.product__btn {
-  padding: 16px 20px;
-  border: 1px solid red;
-  border-radius: 25px;
-  color: red;
-  background: none;
-  font-weight: 600;
-}
-
-.list-view {
-  display: flex;
-  flex-direction: column;
-
-  margin-top: 40px;
-}
-
-.product-list {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 180px;
-  background-color: #f6f6f6;
-  margin-bottom: 10px;
-}
-
-.product-list__img {
-  width: auto;
-  height: 180px;
-}
-
-.product-list .product__btn {
-  margin-right: 20px;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
