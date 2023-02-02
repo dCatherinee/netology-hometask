@@ -1,8 +1,8 @@
 import "./App.css";
-import Hex2rgb from "./Components/Hex2rgb/Hex2rgb";
+import Steps from "./Components/Steps/Steps";
 
 function App() {
-  return <Hex2rgb />;
+  return <Steps />;
 }
 
 export default App;
