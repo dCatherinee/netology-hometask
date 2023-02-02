@@ -1,17 +1,8 @@
 import "./App.css";
-import MessageHistory from "./Components/MessageHistory/MessageHistory";
-import { messages } from "./data";
+import Hex2rgb from "./Components/Hex2rgb/Hex2rgb";
 
 function App() {
-  return (
-    <div className="clearfix container">
-      <div className="chat">
-        <div className="chat-history">
-          <MessageHistory list={messages} />
-        </div>
-      </div>
-    </div>
-  );
+  return <Hex2rgb />;
 }
 
 export default App;
