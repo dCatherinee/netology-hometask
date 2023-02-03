@@ -4,7 +4,11 @@ import StepsForm from "./StepsForm";
 import StepsList from "./StepsList";
 
 const Steps = () => {
-  const [edit, setEdit] = useState({});
+  const [edit, setEdit] = useState({
+    id: "",
+    date: "",
+    km: "",
+  });
   const [diary, setDairy] = useState([
     {
       id: 2007,
@@ -24,16 +28,26 @@ const Steps = () => {
   ]);
 
   const addNewDiary = (item) => {
-    let equal = diary.find((elem) => elem.date === item.date);
-    if (equal) {
+    let equalDate = diary.find((elem) => elem.date === item.date);
+    let equalId = diary.find((elem) => elem.id === item.id);
+    if (equalId) {
       let newDiary = diary.map((elem) => {
-        if (elem.id === equal.id) {
-          elem.km = Number(elem.km) + Number(item.km);
+        if (elem.id === item.id) {
+          elem.date = item.date;
+          elem.km = item.km;
         }
-
         return elem;
       });
-
+      sortByDate(newDiary);
+      setDairy(newDiary);
+      clearEdit();
+    } else if (equalDate) {
+      let newDiary = diary.map((elem) => {
+        if (elem.id === item.id) {
+          elem.km = Number(elem.km) + Number(item.km);
+        }
+        return elem;
+      });
       setDairy(newDiary);
     } else {
       let newDiary = [...diary, item];
@@ -52,7 +66,11 @@ const Steps = () => {
   };
 
   const clearEdit = () => {
-    setEdit({});
+    setEdit({
+      id: "",
+      date: "",
+      km: "",
+    });
   };
 
   return (

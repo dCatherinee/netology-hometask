@@ -1,23 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { nanoid } from "nanoid";
 
-const StepsForm = ({ onAddNewDiary, edit, clearEdit }) => {
-  const [date, setDate] = useState(edit.date || "");
-  const [km, setKm] = useState(edit.km || "");
+const StepsForm = ({ onAddNewDiary, edit }) => {
+  const [date, setDate] = useState("");
+  const [km, setKm] = useState("");
+
+  useEffect(() => {
+    setDate(edit.date);
+    setKm(edit.km);
+  }, [edit.date, edit.km]);
 
   const handlerSubmit = (event) => {
     event.preventDefault();
 
-    onAddNewDiary({
-      id: nanoid(),
-      date: date,
-      km: km,
-    });
+    if (edit.id) {
+      onAddNewDiary({
+        id: edit.id,
+        date: date,
+        km: km,
+      });
+    } else {
+      onAddNewDiary({
+        id: nanoid(),
+        date: date,
+        km: km,
+      });
+    }
 
     setDate("");
     setKm("");
-    clearEdit();
   };
 
   const handlerChangeDate = (event) => {
