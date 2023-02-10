@@ -1,25 +1,61 @@
 import "./App.css";
-import BasicCard from "./Components/BasicCard/BasicCard";
-import "bootstrap/dist/css/bootstrap.min.css";
+import AdBlockLonger from "./Components/ AdBlockLonger/AdBlockLonger";
+import Information from "./Components/Information/Information";
+import News from "./Components/News/News";
+import Search from "./Components/Search/Search";
 
 function App() {
-  const params = {
-    title: "Card Title",
-    text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    textButton: "Go somewhere",
-    img: "http://placehold.it/180x100",
-  };
-
-  const params2 = {
-    title: "Card Title",
-    text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    textButton: "Go somewhere",
+  const adBlockM = {
     img: "",
+    link: "",
+    title: "",
+    text: "",
+  };
+  const weather = {
+    type: "погода",
+    link: "",
+    title: "",
+    tempMorning: "",
+    tempDay: "",
+  };
+  const broadcast = {
+    type: "эфир",
+    link: "",
+    title: "",
+    list: [
+      {
+        img: "",
+        link: "",
+        pic: "",
+        channel: "",
+      },
+      {
+        img: "",
+        link: "",
+        pic: "",
+        channel: "",
+      },
+      {
+        img: "",
+        link: "",
+        pic: "",
+        channel: "",
+      },
+    ],
   };
 
   return (
     <div>
-      <BasicCard {...params} />
+      <div>
+        <News adBlockM={adBlockM} />
+      </div>
+      <Search />
+      <AdBlockLonger link="" img="" />
+      <div>
+        <Information {...weather} />
+        <Information {...broadcast} />
+        <Information />
+      </div>
     </div>
   );
 }
