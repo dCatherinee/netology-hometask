@@ -1,13 +1,10 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Form from "./Components/Form/Form";
 import Watchs from "./Components/Watchs/Watchs";
 
 function App() {
-  const [timezones, setTimezones] = useState({});
   const [watchs, setWatchs] = useState([]);
-
-  const currDate = new Date();
 
   const addNewTimezone = (zone) => {
     setWatchs([...watchs, zone]);
@@ -20,7 +17,7 @@ function App() {
   return (
     <div className="container">
       <Form onAddNewTimezone={addNewTimezone} />
-      <Watchs watchs={watchs} currDate={currDate} onRemove={removeZone} />
+      <Watchs watchs={watchs} onRemove={removeZone} />
     </div>
   );
 }

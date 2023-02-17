@@ -54,6 +54,8 @@ const Form = ({ onAddNewTimezone }) => {
   );
 };
 
-Form.propTypes = {};
+Form.propTypes = {
+  onAddNewTimezone: PropTypes.func,
+};
 
 export default Form;

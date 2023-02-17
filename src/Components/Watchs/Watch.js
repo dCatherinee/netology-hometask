@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { SlClose } from "react-icons/sl";
-import clock from "./utils";
+import clock from "../../utils/utils";
 
-const Watch = ({ zone, currDate, onRemove }) => {
-  const [hours, setHours] = useState("");
-  const [minutes, setMinutes] = useState("");
-  const [seconds, setSeconds] = useState("");
+const Watch = ({ zone, onRemove }) => {
+  const [hours, setHours] = useState("00");
+  const [minutes, setMinutes] = useState("00");
+  const [seconds, setSeconds] = useState("00");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -35,6 +35,9 @@ const Watch = ({ zone, currDate, onRemove }) => {
   );
 };
 
-Watch.propTypes = {};
+Watch.propTypes = {
+  zone: PropTypes.object,
+  onRemove: PropTypes.func,
+};
 
 export default Watch;
