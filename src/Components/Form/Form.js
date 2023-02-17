@@ -1,61 +1,46 @@
 import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import PropTypes from "prop-types";
+import { SlArrowRightCircle } from "react-icons/sl";
 
-const Form = ({ onAddNewTimezone }) => {
-  const [country, setCountry] = useState("");
-  const [timeZone, setTimeZone] = useState("");
+const Form = ({ onAdd }) => {
+  const [text, setText] = useState("");
 
-  const handleChangeCountry = (event) => {
-    setCountry(event.target.value);
+  const handleChangeText = (event) => {
+    setText(event.target.value);
   };
 
-  const handleChangeTimeZone = (event) => {
-    setTimeZone(event.target.value);
-  };
-
-  const handlerSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    onAddNewTimezone({
+    onAdd({
       id: nanoid(),
-      city: country,
-      time: timeZone,
+      content: text,
     });
 
-    setCountry("");
-    setTimeZone("");
+    setText("");
   };
 
   return (
-    <form className="form-wrapper" onSubmit={handlerSubmit}>
-      <div className="input-wrapper">
-        <label>Название</label>
-        <input
-          type="text"
-          name="country"
-          value={country}
-          onChange={handleChangeCountry}
-          placeholder="Москва"
+    <div className="form__container">
+      <h3 className="form__title">New Note</h3>
+      <form className="form" onSubmit={handleSubmit}>
+        <textarea
+          rows="10"
+          cols="45"
+          value={text}
+          onChange={handleChangeText}
         />
-      </div>
-      <div className="input-wrapper">
-        <label>Временная зона</label>
-        <input
-          type="text"
-          name="timeZone"
-          value={timeZone}
-          onChange={handleChangeTimeZone}
-          placeholder="+03:00"
-        />
-      </div>
-      <button className="form-button">Добавить</button>
-    </form>
+        <button>
+          <SlArrowRightCircle className="form__icon" />
+        </button>
+      </form>
+    </div>
   );
 };
 
 Form.propTypes = {
-  onAddNewTimezone: PropTypes.func,
+  onAdd: PropTypes.func,
 };
 
 export default Form;

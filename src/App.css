@@ -1,86 +1,91 @@
 .container {
-  width: 650px;
+  margin-left: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.header__title {
+  font-size: 36px;
+}
+
+.header__icon {
+  margin-left: 16px;
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.notes__container {
   margin-top: 40px;
-  margin-left: 40px;
-}
-
-.form-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-direction: row;
-}
-
-.input-wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-.input-wrapper label {
-  font-size: 14px;
-  padding-left: 10px;
-  padding-bottom: 10px;
-}
-
-.input-wrapper input {
-  padding: 6px 20px;
-  border: 1px solid black;
-}
-
-.form-button {
-  padding: 6px 30px;
-  background: none;
-  border: 1px solid black;
-  transition: 0.2s ease-in-out;
-}
-
-.form-button:hover {
-  background-color: lightgray;
-}
-
-.watchs-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 36px;
-  margin-top: 40px;
+  gap: 16px;
 }
 
-.watch-wrapper {
-  width: 120px;
-  height: 180px;
+.notes__note {
+  width: 250px;
+  height: 250px;
+  border: 1px solid black;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-}
-
-.watch-title {
-  font-size: 14px;
-  font-weight: 400;
-  text-align: center;
-}
-
-.watch {
+  align-items: center;
   position: relative;
 }
 
-.watch-clock {
-  width: 100px;
-  height: 100px;
-  border: 1px solid black;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.note__text {
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
-.watch-clock p {
-  font-size: 14px;
+.note__icon {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.form__container {
+  margin-top: 40px;
+}
+
+.form {
+  position: relative;
+  width: 400px;
+}
+
+.form textarea {
+  resize: none;
+}
+
+.form button {
+  width: 0;
+  height: 0;
+  padding: 0;
+  border: none;
+}
+
+.form__title {
+  font-size: 16px;
   font-weight: 400;
 }
 
-.watch-icon {
+.form__icon {
+  width: 30px;
+  height: 30px;
   position: absolute;
-  right: 0;
-  top: 0;
+  bottom: 15px;
+  right: 30px;
   cursor: pointer;
 }
