@@ -1,68 +1,120 @@
 import React, { useState } from "react";
-import getPrettyDate from "./utils/utils";
 import "./App.css";
 
-function withDateTime(Component, date) {
+function withViews(Component, ComponentWrap, items) {
   return function (props) {
-    const prettyDate = getPrettyDate(date);
-
-    return <Component {...props} date={prettyDate} />;
+    return (
+      <ComponentWrap>
+        <Component {...items} />
+      </ComponentWrap>
+    );
   };
 }
 
-function DateTime(props) {
-  return <p className="date">{props.date}</p>;
+function New(props) {
+  return (
+    <div className="wrap-item wrap-item-new">
+      <span className="label">New!</span>
+      {props.children}
+    </div>
+  );
+}
+
+function Popular(props) {
+  return (
+    <div className="wrap-item wrap-item-popular">
+      <span className="label">Popular!</span>
+      {props.children}
+    </div>
+  );
+}
+
+function Article(props) {
+  return (
+    <div className="item item-article">
+      <h3>
+        <a href="#">{props.title}</a>
+      </h3>
+      <p className="views">Прочтений: {props.views}</p>
+    </div>
+  );
 }
 
 function Video(props) {
-  const PrettyDate = withDateTime(DateTime, props.date);
-
   return (
-    <div className="video">
+    <div className="item item-video">
       <iframe
         src={props.url}
         frameBorder="0"
         allow="autoplay; encrypted-media"
         allowFullScreen
       ></iframe>
-      <PrettyDate />
+      <p className="views">Просмотров: {props.views}</p>
     </div>
   );
 }
 
-function VideoList(props) {
-  return props.list.map((item, id) => (
-    <Video key={id} url={item.url} date={item.date} />
-  ));
+function List(props) {
+  return props.list.map((item, id) => {
+    switch (item.type) {
+      case "video":
+        if (item.views > 1000) {
+          let WithViews = withViews(Video, Popular, item);
+          return <WithViews key={id} />;
+        }
+        if (item.views < 100) {
+          let WithViews = withViews(Video, New, item);
+          return <WithViews key={id} />;
+        }
+        return <Video key={id} {...item} />;
+
+      case "article":
+        if (item.views > 1000) {
+          let WithViews = withViews(Article, Popular, item);
+          return <WithViews key={id} />;
+        }
+        if (item.views < 100) {
+          let WithViews = withViews(Article, New, item);
+          return <WithViews key={id} />;
+        }
+        return <Article key={id} {...item} />;
+    }
+  });
 }
 
 export default function App() {
   const [list, setList] = useState([
     {
+      type: "video",
       url: "https://www.youtube.com/embed/rN6nlNC9WQA?rel=0&amp;controls=0&amp;showinfo=0",
-      date: "2017-07-31 13:24:00",
+      views: 50,
     },
     {
+      type: "video",
       url: "https://www.youtube.com/embed/dVkK36KOcqs?rel=0&amp;controls=0&amp;showinfo=0",
-      date: "2018-03-03 12:10:00",
+      views: 12,
     },
     {
-      url: "https://www.youtube.com/embed/xGRjCa49C6U?rel=0&amp;controls=0&amp;showinfo=0",
-      date: "2018-02-03 23:16:00",
+      type: "article",
+      title: "Невероятные события в неизвестном поселке...",
+      views: 175,
     },
     {
-      url: "https://www.youtube.com/embed/RK1K2bCg4J8?rel=0&amp;controls=0&amp;showinfo=0",
-      date: "2018-01-03 12:10:00",
+      type: "article",
+      title: "Секретные данные были раскрыты!",
+      views: 1532,
     },
     {
+      type: "video",
       url: "https://www.youtube.com/embed/TKmGU77INaM?rel=0&amp;controls=0&amp;showinfo=0",
-      date: "2018-01-01 16:17:00",
+      views: 4253,
     },
     {
-      url: "https://www.youtube.com/embed/TxbE79-1OSI?rel=0&amp;controls=0&amp;showinfo=0",
-      date: "2017-12-02 05:24:00",
+      type: "article",
+      title: "Кот Бегемот обладает невероятной...",
+      views: 12,
     },
   ]);
 
-  return <VideoList list={list} />;
+  return <List list={list} />;
 }
